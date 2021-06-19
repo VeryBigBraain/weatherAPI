@@ -1,7 +1,9 @@
 const weatherForm = document.querySelector('.weather__form');
 const cityInput = document.querySelector('.weather__input');
+const weatherIcon = document.querySelector('.weather__icon');
 
 let city = 'Moscow';
+let pretendWeatherState = 'clear';
 
 // Get weather data
 function weatherBalloon( cityName ) {
@@ -35,11 +37,50 @@ function drawWeather( d ) {
 	document.querySelector('.weather__location').innerHTML = d.name;
 
 	if( description.indexOf('rain') > 0 ) {
+		document.querySelector('.weather').classList.remove(pretendWeatherState);
 		document.querySelector('.weather').classList.add('rainy');
+		weatherIcon.innerHTML = `
+			<div class="icon rainy">
+				<div class="cloud"></div>
+				<div class="rain"></div>
+			</div>
+		`;
+		weatherIcon.style.color = "#76a5a2";
+		pretendWeatherState = 'rainy';
 	} else if( description.indexOf('cloud') > 0 ) {
+		document.querySelector('.weather').classList.remove(pretendWeatherState);
 		document.querySelector('.weather').classList.add('cloudy');
+		weatherIcon.innerHTML = `
+			<div class="icon cloudy">
+                <div class="cloud"></div>
+                <div class="cloud"></div>
+            </div>
+		`;
+		weatherIcon.style.color = "#637c7b";
+		pretendWeatherState = 'cloudy';
 	} else if( description.indexOf('sunny') > 0 ) {
+		document.querySelector('.weather').classList.remove(pretendWeatherState);
 		document.querySelector('.weather').classList.add('sunny');
+		weatherIcon.innerHTML = `
+			<div class="icon sunny">
+				<div class="sun">
+					<div class="rays"></div>
+				</div>
+			</div>
+		`;
+		weatherIcon.style.color = "#ff713e";
+		pretendWeatherState = 'sunny';
+	} else {
+		document.querySelector('.weather').classList.remove(pretendWeatherState);
+		document.querySelector('.weather').classList.add('clear');
+		weatherIcon.innerHTML = `
+			<div class="icon cloudy">
+                <div class="cloud"></div>
+                <div class="cloud"></div>
+            </div>
+		`;
+		weatherIcon.style.color = "#b3dbd9";
+		pretendWeatherState = 'clear';
 	}
 }
 
