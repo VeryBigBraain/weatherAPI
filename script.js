@@ -12,7 +12,7 @@ function weatherBalloon( cityName ) {
  
 	fetch(reqUrl)  
 		.then(resp => resp.json()) // Convert data to json
-		.then(data => {
+		.then(data => { 
 			drawWeather(data);
 			console.log(data);
 		})

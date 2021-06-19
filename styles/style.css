@@ -407,6 +407,13 @@ html {
   text-align: center;
   color: #fff;
   font-size: 5em;
+  padding-top: 10px;
+}
+
+@media (max-width: 440px) {
+  .weather .weather__content h1 {
+    padding-top: 0px;
+  }
 }
 
 .weather .weather__content .weather__location {

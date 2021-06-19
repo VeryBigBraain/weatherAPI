@@ -111,7 +111,7 @@ html {
 
             @media (max-width: 900px) {
                 width: 80%;
-
+                
                 .weather__wind span,
                 .weather__humidity span {
                     display: none;
@@ -304,6 +304,11 @@ html {
             text-align: center;
             color: #fff;
             font-size: 5em;
+            padding-top: 10px;
+
+            @media (max-width: 440px) {
+                padding-top: 0px;
+            }
         }
         .weather__location {
             font-size: 1.6em;
