@@ -2,14 +2,14 @@ const weatherForm = document.querySelector('.weather__form');
 const cityInput = document.querySelector('.weather__input');
 const weatherIcon = document.querySelector('.weather__icon');
 
-let city = 'Moscow';
+let city = 'Mosow';
 let pretendWeatherState = 'clear';
 
 // Get weather data
 function weatherBalloon( cityName ) {
 	var key = 'c41e73df32237141c5d0e605eb7aa984';
 	reqUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName+ '&appid=' + key;
-
+ 
 	fetch(reqUrl)  
 		.then(resp => resp.json()) // Convert data to json
 		.then(data => {
@@ -32,8 +32,8 @@ function drawWeather( d ) {
 	
 	document.querySelector('.weather__description').innerHTML = d.weather[0].description;
 	document.querySelector('.weather__temp').innerHTML = celcius + '&deg;';
-	document.querySelector('.weather__humidity').innerHTML = 'Humidity ' + d.main.humidity + '%';
-	document.querySelector('.weather__wind').innerHTML = 'Wind speed ' + d.wind.speed + 'm/s';
+	document.querySelector('.weather__humidity').innerHTML = '<span>humidity: </span>' + d.main.humidity + '%';
+	document.querySelector('.weather__wind').innerHTML = '<span>wind speed: </span>' + d.wind.speed + 'm/s';
 	document.querySelector('.weather__location').innerHTML = d.name;
 
 	if( description.indexOf('rain') > 0 ) {

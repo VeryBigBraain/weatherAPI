@@ -20,12 +20,13 @@ html {
   max-width: 100%;
   width: 100%;
   height: 100%;
+  font-size: calc(14px + 7 * (100vw / 1440));
 }
 
 .weather__nav-container {
   width: 100%;
   height: 70px;
-  padding: 5px 60px;
+  padding: 5px calc(20px + 40 * (100vw / 1440));
   background-color: #363636;
   position: fixed;
 }
@@ -76,11 +77,11 @@ html {
 .weather__nav-text {
   color: #fff;
   padding: 0px 10px;
-  font-size: calc(12px + 9 * (100vw / 1440));
+  font-size: calc(14px + 7 * (100vw / 1440));
 }
 
 .weather__nav-options {
-  font-size: 1.1em;
+  font-size: 0.85em;
 }
 
 .weather__nav-options a {
@@ -92,10 +93,10 @@ html {
 }
 
 .weather {
-  padding: 0px 60px;
+  padding: calc(20px + 40 * (100vw / 1440));
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: 1.3em;
+  font-size: 1em;
   color: #fff;
   text-shadow: 0.1em 0.1em 0 rgba(0, 0, 0, 0.3);
   height: 100vh;
@@ -122,7 +123,7 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 60px 30px 30px 30px;
+  padding: 60px 0px 30px 0px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -139,10 +140,31 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 50%;
+  width: 60%;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  padding-bottom: 20px;
+}
+
+.weather .weather__content .weather__characteristics .weather__description {
+  padding: 0px 10px;
+}
+
+@media (max-width: 900px) {
+  .weather .weather__content .weather__characteristics {
+    width: 80%;
+  }
+  .weather .weather__content .weather__characteristics .weather__wind span,
+  .weather .weather__content .weather__characteristics .weather__humidity span {
+    display: none;
+  }
+}
+
+@media (max-width: 440px) {
+  .weather .weather__content .weather__characteristics {
+    width: 100%;
+  }
 }
 
 .weather .weather__content .weather__icon {
@@ -392,7 +414,8 @@ html {
 }
 
 .weather .weather__form-container {
-  padding: 20px 30px 20px 30px;
+  padding: 30px 0px 20px 0px;
+  max-width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   display: -webkit-box;
@@ -431,6 +454,7 @@ html {
   font-size: 1em;
   border-radius: 16px;
   width: 360px;
+  max-width: 100%;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   color: #363636;
