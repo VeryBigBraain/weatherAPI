@@ -1,8 +1,9 @@
 const weatherForm = document.querySelector('.weather__form');
 const cityInput = document.querySelector('.weather__input');
 const weatherIcon = document.querySelector('.weather__icon');
+const lifeTime = 600000;
 
-let city = 'Mosow';
+let city = 'Moscow';
 let pretendWeatherState = 'clear';
 
 // Get weather data
@@ -14,15 +15,44 @@ function weatherBalloon( cityName ) {
 		.then(resp => resp.json()) // Convert data to json
 		.then(data => { 
 			drawWeather(data);
-			console.log(data);
+			setLocalStorage(data, cityName);
 		})
 		.catch(err => console.log(err));
 }
 
-// Default
-window.onload = function() {
-	weatherBalloon(city);
-  }
+// setting item to LocalStorage
+function setLocalStorage(data, cityName) {
+	const now = new Date()
+
+	const item = {
+		data,
+		expiry: now.getTime() + lifeTime
+	};
+	localStorage.setItem(cityName, JSON.stringify(item));
+};
+
+// getting item from LocalStorage
+function getLocalStorage(city) {
+	const cityItem = localStorage.getItem(city);
+	// check item in localStorage
+	if (cityItem) {
+		const item = JSON.parse(cityItem)
+		const now = new Date()
+
+		if (now.getTime() > item.expiry) {
+			// If the item is expired, delete the item from storage
+			// and add new one
+			localStorage.removeItem(city);
+			weatherBalloon(city);
+		} else {
+			drawWeather(item.data);
+		}
+	} else {
+		weatherBalloon(city);
+	}
+
+	return null;
+};
 
 // Show weather data
 function drawWeather( d ) {
@@ -90,6 +120,11 @@ cityInput.addEventListener('change', (e) => {
 });
 weatherForm.addEventListener('submit', (e) => {
 	e.preventDefault();
-	weatherBalloon(city);
+	getLocalStorage(city);
 	cityInput.value = "";
 });
+
+// Default
+window.onload = function() {
+	getLocalStorage(city);
+  }
