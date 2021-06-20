@@ -1,6 +1,7 @@
 const weatherForm = document.querySelector('.weather__form');
 const cityInput = document.querySelector('.weather__input');
 const weatherIcon = document.querySelector('.weather__icon');
+const weatherBtn = document.querySelector('.weather__btn');
 const lifeTime = 600000;
 
 let city = 'Moscow';
@@ -118,7 +119,7 @@ function drawWeather( d ) {
 cityInput.addEventListener('change', (e) => {
 	city = e.target.value;
 });
-weatherForm.addEventListener('submit', (e) => {
+weatherBtn.addEventListener('click', (e) => {
 	e.preventDefault();
 	getLocalStorage(city);
 	cityInput.value = "";
