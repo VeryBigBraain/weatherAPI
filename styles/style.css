@@ -480,6 +480,13 @@ html {
   border: none;
   border-radius: 18px;
   font-family: 'Montserrat', sans-serif;
+  -webkit-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+.weather .weather__form-container .weather__form .weather__btn-container .weather__btn:hover {
+  background-color: #c9edfa;
+  color: #363636;
 }
 
 .clear {

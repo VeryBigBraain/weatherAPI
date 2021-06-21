@@ -21,7 +21,7 @@ function weatherBalloon( cityName ) {
 		.catch(err => console.log(err));
 }
 
-// setting item to LocalStorage
+// Setting item to LocalStorage
 function setLocalStorage(data, cityName) {
 	const now = new Date()
 
@@ -32,10 +32,10 @@ function setLocalStorage(data, cityName) {
 	localStorage.setItem(cityName, JSON.stringify(item));
 };
 
-// getting item from LocalStorage
+// Getting item from LocalStorage
 function getLocalStorage(city) {
 	const cityItem = localStorage.getItem(city);
-	// check item in localStorage
+	// Check item in localStorage
 	if (cityItem) {
 		const item = JSON.parse(cityItem)
 		const now = new Date()
@@ -57,6 +57,8 @@ function getLocalStorage(city) {
 
 // Show weather data
 function drawWeather( d ) {
+	// Finish loading animation
+
 	let celcius = Math.round(parseFloat(d.main.temp) - 273.15);
 	let fahrenheit = Math.round(((parseFloat(d.main.temp) - 273.15) * 1.8) + 32); 
 	let description = d.weather[0].description;
@@ -128,4 +130,4 @@ weatherBtn.addEventListener('click', (e) => {
 // Default
 window.onload = function() {
 	getLocalStorage(city);
-  }
+};
