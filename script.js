@@ -2,23 +2,28 @@ const weatherForm = document.querySelector('.weather__form');
 const cityInput = document.querySelector('.weather__input');
 const weatherIcon = document.querySelector('.weather__icon');
 const weatherBtn = document.querySelector('.weather__btn');
+const weatherContent = document.querySelector('.weather__content');
+const loader = document.querySelector('.lds-ring');
 const lifeTime = 600000;
 
 let city = 'Moscow';
 let pretendWeatherState = 'clear';
+loader.style.opacity = 0;
 
 // Get weather data
 function weatherBalloon( cityName ) {
 	var key = 'c41e73df32237141c5d0e605eb7aa984';
 	reqUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName+ '&appid=' + key;
- 
+	weatherContent.style.opacity = 0;
+	loader.style.opacity = 100;
+	
 	fetch(reqUrl)  
 		.then(resp => resp.json()) // Convert data to json
-		.then(data => { 
+		.then(data => {
 			drawWeather(data);
 			setLocalStorage(data, cityName);
 		})
-		.catch(err => console.log(err));
+	.catch(err => console.log(err));
 }
 
 // Setting item to LocalStorage
@@ -58,6 +63,8 @@ function getLocalStorage(city) {
 // Show weather data
 function drawWeather( d ) {
 	// Finish loading animation
+	weatherContent.style.opacity = 100;
+	loader.style.opacity = 0;
 
 	let celcius = Math.round(parseFloat(d.main.temp) - 273.15);
 	let fahrenheit = Math.round(((parseFloat(d.main.temp) - 273.15) * 1.8) + 32); 
